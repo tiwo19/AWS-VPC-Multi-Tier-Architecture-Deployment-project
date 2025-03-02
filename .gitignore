@@ -14,6 +14,8 @@
 .terraformrc
 terraform.rc
 
+.terraform.lock.hcl
+
 # .tfstate files
 *.tfstate
 *.tfstate.*
