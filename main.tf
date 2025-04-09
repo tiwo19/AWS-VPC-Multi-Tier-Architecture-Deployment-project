@@ -12,7 +12,7 @@ module "servers" {
   desired_capacity  = 2
   max_size          = 3
   min_size          = 1
-  subnet_ids        = [module.vpc.subnet_private_1]
+  subnet_ids        = [module.vpc.subnet_private_1, module.vpc.subnet_private_2]
    web_tg_arn       = module.alb.web_tg_arn
 }
 
@@ -29,7 +29,7 @@ module "SecGroup" {
 }
 module "alb" {
   source    = "./modules/alb"
-  subnet_id = module.vpc.subnet_1
+  subnet_ids = [module.vpc.subnet_1]
   sgalb_1   = module.SecGroup.sg_alb_1
   vpc_id            = module.vpc.vpc_1
   
@@ -42,5 +42,5 @@ module "db" {
   db_password          = "password"
   db_security_group_id = module.SecGroup.sg_db_1
   db_subnet_group      = "main"
-  subnet_ids           = [module.vpc.subnet_private_1]
+  subnet_ids           = [module.vpc.subnet_private_1, module.vpc.subnet_private_2]
 }

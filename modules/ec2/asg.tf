@@ -1,11 +1,14 @@
- resource "aws_launch_configuration" "app" {
-  name          = "app-launch-configuration"
+ resource "aws_launch_template" "app" {
+  name          = "app-launch-template"
   image_id      = var.ami_id
   instance_type = var.instance_type
-  security_groups = [var.security_group_id]
+  vpc_security_group_ids = [ var.security_group_id ]
 
-  lifecycle {
-    create_before_destroy = true
+tag_specifications {
+    resource_type = "instance"
+    tags = {
+      Name = "app-instance"
+    }
   }
 }
 
@@ -14,14 +17,17 @@ resource "aws_autoscaling_group" "app" {
   max_size             = var.max_size
   min_size             = var.min_size
   vpc_zone_identifier  = var.subnet_ids
-  launch_configuration = aws_launch_configuration.app.id
+  launch_template {
+    id      = aws_launch_template.app.id
+    version = "$Latest"
+  }
 
   tag {
     key                 = "Name"
     value               = "app-instance"
     propagate_at_launch = true
   }
-}   
+} 
 
 resource "aws_autoscaling_attachment" "asg_attachment" {
   autoscaling_group_name = aws_autoscaling_group.app.name

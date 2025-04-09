@@ -3,7 +3,7 @@ resource "aws_lb" "web_alb" {
     internal = false
     load_balancer_type = "application"
     security_groups = [var.sgalb_1]
-    subnets = [var.subnet_id]
+    subnets = var.subnet_ids
 
     tags = {Name = "Web ALB"}
   
@@ -17,7 +17,7 @@ resource "aws_lb_target_group" "web_tg" {
 
   health_check {
     interval            = 30
-    path                = "/"
+    path                = "/health"
     timeout             = 5
     healthy_threshold   = 5
     unhealthy_threshold = 2
