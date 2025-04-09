@@ -76,3 +76,23 @@ terraform init
 terraform plan
 terraform apply -auto-approve
 ```
+⚙️ CI/CD Pipeline
+This project uses GitHub Actions to implement a robust CI/CD pipeline for automating Terraform workflows. The pipeline is defined in .github/workflows/terraform-ci.yml.
+
+✅ CI/CD Features:
+Terraform Format Check – Ensures all Terraform code is properly formatted
+
+Terraform Init – Initializes the backend and installs providers
+
+Terraform Validate – Validates Terraform syntax and configuration
+
+Terraform Plan – Generates and displays an execution plan
+
+(Optional) Terraform Apply – (Manually triggered or auto-deployed in production workflows)
+
+🚀 Workflow Triggers:
+| Event	            |       Action
+|-------------------|----------------|
+| push to main      |	Runs terraform fmt, init, validate, and plan
+| pull_request      |  Runs checks before merging into main
+|workflow_dispatch	| Allows manual triggering of apply/deploy steps
