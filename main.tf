@@ -13,7 +13,7 @@ module "servers" {
   max_size          = 3
   min_size          = 1
   subnet_ids        = [module.vpc.subnet_private_1, module.vpc.subnet_private_2]
-   web_tg_arn       = module.alb.web_tg_arn
+  web_tg_arn        = module.alb.web_tg_arn
 }
 
 module "vpc" {
@@ -28,11 +28,11 @@ module "SecGroup" {
 
 }
 module "alb" {
-  source    = "./modules/alb"
+  source     = "./modules/alb"
   subnet_ids = [module.vpc.subnet_1]
-  sgalb_1   = module.SecGroup.sg_alb_1
-  vpc_id            = module.vpc.vpc_1
-  
+  sgalb_1    = module.SecGroup.sg_alb_1
+  vpc_id     = module.vpc.vpc_1
+
 
 }
 module "db" {

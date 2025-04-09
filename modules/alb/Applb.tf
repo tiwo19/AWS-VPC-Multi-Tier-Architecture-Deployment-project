@@ -1,12 +1,12 @@
 resource "aws_lb" "web_alb" {
-    name = "web-alb"
-    internal = false
-    load_balancer_type = "application"
-    security_groups = [var.sgalb_1]
-    subnets = var.subnet_ids
+  name               = "web-alb"
+  internal           = false
+  load_balancer_type = "application"
+  security_groups    = [var.sgalb_1]
+  subnets            = var.subnet_ids
 
-    tags = {Name = "Web ALB"}
-  
+  tags = { Name = "Web ALB" }
+
 }
 
 resource "aws_lb_target_group" "web_tg" {

@@ -1,7 +1,7 @@
 output "alb_1" {
-    value = aws_lb.web_alb.id
-    description = "ALB FOR WEB_SERVER"
-  
+  value       = aws_lb.web_alb.id
+  description = "ALB FOR WEB_SERVER"
+
 }
 
 output "web_tg_arn" {

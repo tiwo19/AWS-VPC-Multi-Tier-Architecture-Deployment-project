@@ -4,8 +4,8 @@ variable "subnet_id" {
 }
 
 variable "sgec2_1" {
-    description = "SG FOR EC2 INSTANCE "
-  
+  description = "SG FOR EC2 INSTANCE "
+
 }
 variable "ami_id" {
   description = "The AMI ID for the EC2 instances"
